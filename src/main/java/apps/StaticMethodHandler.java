@@ -1,6 +1,5 @@
 package apps;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class StaticMethodHandler implements Handler {
@@ -11,11 +10,11 @@ public class StaticMethodHandler implements Handler {
     }
 
     @Override
-    public String processor() {
+    public Object processor() {
         try {
-            return (String) m.invoke(null , null);
+            return m.invoke(null , null);
         } catch (Exception e) {
+            return null;
         }
-        return null;
     }
 }

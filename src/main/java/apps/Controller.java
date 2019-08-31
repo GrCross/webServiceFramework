@@ -1,13 +1,14 @@
 package apps;
 
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 /**
  * Hello world!
  *
  */
-public class Controler 
+public class Controller
 {
     public static Service service;
 
@@ -16,9 +17,10 @@ public class Controler
         return service;
     }
 
-    public static void main(String[] args) throws ClassNotFoundException, InvocationTargetException, IllegalAccessException {
+    public static void main(String[] args) throws ClassNotFoundException, InvocationTargetException, IllegalAccessException, IOException {
         service = new Service();
 
         service.initialize("apps.WebServiceHello");
+        service.listen();
     }
 }
