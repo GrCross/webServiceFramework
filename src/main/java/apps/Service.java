@@ -88,8 +88,10 @@ public class Service {
 
             try {
                 Handler handler = this.URLHandleList.get(request);
+                System.out.println(request);
                 Object answer = handler.processor();
                 String mimeType="";
+                
                 if(answer instanceof String){
                     mimeType="text/html";
                     out.print("HTTP/1.0 200 OK\r\n"+
@@ -108,8 +110,15 @@ public class Service {
                 out.close(); in .close();
 
             }catch (Exception e){
-                System.out.println("moriiiiii");
-                e.printStackTrace();
+                System.out.println();
+                String mimeType="";
+                mimeType="text/html";
+                    out.print("HTTP/1.0 404 Not Found\r\n"+
+                            "Content-type: "+mimeType+"\r\n\r\n");
+                    out.print("<html> " +
+                    "<head>404</head>" +
+                    "</html>");
+                //e.printStackTrace();
             }
 
 
