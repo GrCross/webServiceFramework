@@ -14,6 +14,7 @@ import javax.activation.MimetypesFileTypeMap;
 import java.io.File;
 
 public class Service {
+    private static int port = getPort();
     private static PrintWriter out = null;
     private static BufferedReader in = null;
     private static BufferedOutputStream dataOut = null;
@@ -46,7 +47,7 @@ public class Service {
 
         try {
             //try listen the port
-            serverSocket =new ServerSocket(5000);
+            serverSocket =new ServerSocket(port);
 
         }catch (Exception e) {
             System.err.println("Could not listen on port: 35000.");
@@ -118,6 +119,14 @@ public class Service {
         }
 
 
+    }
+
+
+    static int getPort() {
+        if (System.getenv("PORT") != null) {
+            return Integer.parseInt(System.getenv("PORT"));
+        }
+        return 4567; //returns default port if heroku-port isn't set (i.e. on localhost)
     }
 
 }
