@@ -75,11 +75,17 @@ public class Service {
 
             System.out.println(inputLine);
             System.out.println("soy input");
+            if(inputLine == null){
+                inputLine = "GET /apps/cuadrado HTTP/1.1";
+            }
             StringTokenizer st = new StringTokenizer(inputLine);
+            System.out.println(st.countTokens());
+            ;
             String method = st.nextToken();
-
+            System.out.println(method+" method");
             //requested archive
             String request = st.nextToken();
+            System.out.println(request+" request");
 
             while ((inputLine = in .readLine()) != null) {
                 System.out.println("Received: " + inputLine);
