@@ -72,20 +72,18 @@ public class Service {
             dataOut = new BufferedOutputStream(clientSocket.getOutputStream());
             String inputLine, outPutLine;
             inputLine = in.readLine();
-
-            System.out.println(inputLine);
-            System.out.println("soy input");
+    
             if(inputLine == null){
                 inputLine = "GET /apps/cuadrado HTTP/1.1";
             }
             StringTokenizer st = new StringTokenizer(inputLine);
-            System.out.println(st.countTokens());
+            
             ;
             String method = st.nextToken();
-            System.out.println(method+" method");
+            
             //requested archive
             String request = st.nextToken();
-            System.out.println(request+" request");
+            
 
             while ((inputLine = in .readLine()) != null) {
                 System.out.println("Received: " + inputLine);
@@ -96,10 +94,8 @@ public class Service {
 
             try {
                 Handler handler = this.URLHandleList.get(request);
-                System.out.println(request);
                 String mimeType="";
                 if(handler == null){
-                    System.out.println("hola");
                     mimeType="text/html";
                     out.print("HTTP/1.0 404 NOT_FOUND\r\n"+
                             "Content-type: "+mimeType+"\r\n\r\n");
@@ -125,7 +121,6 @@ public class Service {
 
             }catch (Exception e){
 
-                System.out.println();
                 String mimeType="";
                 mimeType="text/html";
                     out.print("HTTP/1.0 404 Not Found\r\n"+
