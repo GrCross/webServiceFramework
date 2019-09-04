@@ -89,27 +89,34 @@ public class Service {
             try {
                 Handler handler = this.URLHandleList.get(request);
                 System.out.println(request);
-                Object answer = handler.processor();
                 String mimeType="";
-                
-                if(answer instanceof String){
+                if(handler == null){
+                    System.out.println("hola");
                     mimeType="text/html";
-                    out.print("HTTP/1.0 200 OK\r\n"+
+                    out.print("HTTP/1.0 404 NOT_FOUND\r\n"+
                             "Content-type: "+mimeType+"\r\n\r\n");
-                    out.print(answer);
                 }else{
-                    //mimeType="image/jpeg";
-                    InputStream inStream=new FileInputStream((File)answer);
-                    mimeType= new MimetypesFileTypeMap().getContentType((File)answer);
-                    out.print("HTTP/1.0 200 OK\r\n"+
-                            "Content-type: "+mimeType+"\r\n\r\n");
-                    byte[]fileData = new byte[5000];
-                    int n;
-                    while ((n = inStream.read(fileData))>0) out.write(fileData, 0, n);
+                    Object answer = handler.processor();
+                    if(answer instanceof String){
+                        mimeType="text/html";
+                        out.print("HTTP/1.0 200 OK\r\n"+
+                                "Content-type: "+mimeType+"\r\n\r\n");
+                        out.print(answer);
+                    }else{
+                        //mimeType="image/jpeg";
+                        InputStream inStream=new FileInputStream((File)answer);
+                        mimeType= new MimetypesFileTypeMap().getContentType((File)answer);
+                        out.print("HTTP/1.0 200 OK\r\n"+
+                                "Content-type: "+mimeType+"\r\n\r\n");
+                        byte[]fileData = new byte[5000];
+                        int n;
+                        while ((n = inStream.read(fileData))>0) out.write(fileData, 0, n);
+                    }
                 }
                 out.close(); in .close();
 
             }catch (Exception e){
+
                 System.out.println();
                 String mimeType="";
                 mimeType="text/html";
@@ -118,12 +125,8 @@ public class Service {
                     out.print("<html> " +
                     "<head>404</head>" +
                     "</html>");
-                //e.printStackTrace();
+                e.printStackTrace();
             }
-
-
-
-
 
         }
 
