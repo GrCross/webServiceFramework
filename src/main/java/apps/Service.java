@@ -72,7 +72,9 @@ public class Service {
             dataOut = new BufferedOutputStream(clientSocket.getOutputStream());
             String inputLine, outPutLine;
             inputLine = in.readLine();
+
             System.out.println(inputLine);
+            System.out.println("soy input");
             StringTokenizer st = new StringTokenizer(inputLine);
             String method = st.nextToken();
 
