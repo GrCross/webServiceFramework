@@ -25,7 +25,6 @@ public class Service {
 
     public void initialize(String path) throws InvocationTargetException, IllegalAccessException, ClassNotFoundException {
 
-
             Class<?> c = Class.forName(path);
 
             for (Method m: c.getMethods()) {

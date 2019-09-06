@@ -7,7 +7,12 @@
 <form>
     Numero: <input type="text" name="num"><br>
     Cuadrado: <input type="text" name="mult"><br>
-    <input type="button" value="cuadrado" onclick="calcMult()">
+    <input type="button" value="cuadrado" onclick="calcMult()"><br/>
+    Cargar archivos:<br/>
+    <a href="https://web-service-framework.herokuapp.com/apps/elesis">Imagen jpg</a><br/>
+    <a href="https://web-service-framework.herokuapp.com/apps/landscape">Imagen JPEG</a><br/>
+    <a href="https://web-service-framework.herokuapp.com/apps/music">Musica</a><br/>
+    <a href="https://web-service-framework.herokuapp.com/apps/video">Video</a><br/>
 </form>
 
 <script>
@@ -17,6 +22,7 @@
         document.getElementsByName("mult")[0].value = mult;
     }
 </script>
+
 
 
 </body>
