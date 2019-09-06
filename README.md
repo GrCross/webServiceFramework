@@ -75,8 +75,9 @@ Usar los siguientes links:
 
 Pagina de inicio
 ````
-localhost:5000/apps/cuadrado
+localhost:5000/
 ````
+Una vez en la pagina de inicio se podra acceder a los recursos desde ella
 
 Imagen jpeg
 ````
