@@ -33,7 +33,9 @@ public class Service {
                 if(m.isAnnotationPresent(Web.class)){
                     Handler handler = new StaticMethodHandler(m);
                     Web an = m.getAnnotation(Web.class);
-                    URLHandleList.put("/apps/"+an.value(),handler);
+                    String methodPath = "/apps/"+an.value();
+                    System.out.println(methodPath);
+                    URLHandleList.put(methodPath,handler);
                     System.out.println("invoking method "+c.getName()+"."+m.getName()+"");
                     System.out.println(m.invoke(null,null));
                 }
@@ -83,6 +85,8 @@ public class Service {
             
             //requested archive
             String request = st.nextToken();
+
+
             
 
             while ((inputLine = in .readLine()) != null) {
@@ -95,28 +99,42 @@ public class Service {
             try {
                 Handler handler = this.URLHandleList.get(request);
                 String mimeType="";
-                if(handler == null){
-                    mimeType="text/html";
-                    out.print("HTTP/1.0 404 NOT_FOUND\r\n"+
+                if(request.equals("/")){
+                    Handler handlerTemp = this.URLHandleList.get("/apps/cuadrado");
+                    Object answer = handlerTemp.processor();
+                    InputStream inStream=new FileInputStream((File)answer);
+
+                    mimeType= new MimetypesFileTypeMap().getContentType((File)answer);
+                    out.print("HTTP/1.0 200 OK\r\n"+
                             "Content-type: "+mimeType+"\r\n\r\n");
+                    byte[]fileData = new byte[5000];
+                    int n;
+                    while ((n = inStream.read(fileData))>0) out.write(fileData, 0, n);
                 }else{
-                    Object answer = handler.processor();
-                    if(answer instanceof String){
+                    if(handler == null){
                         mimeType="text/html";
-                        out.print("HTTP/1.0 200 OK\r\n"+
+                        out.print("HTTP/1.0 404 NOT_FOUND\r\n"+
                                 "Content-type: "+mimeType+"\r\n\r\n");
-                        out.print(answer);
                     }else{
-                        //mimeType="image/jpeg";
-                        InputStream inStream=new FileInputStream((File)answer);
-                        mimeType= new MimetypesFileTypeMap().getContentType((File)answer);
-                        out.print("HTTP/1.0 200 OK\r\n"+
-                                "Content-type: "+mimeType+"\r\n\r\n");
-                        byte[]fileData = new byte[5000];
-                        int n;
-                        while ((n = inStream.read(fileData))>0) out.write(fileData, 0, n);
+                        Object answer = handler.processor();
+                        if(answer instanceof String){
+                            mimeType="text/html";
+                            out.print("HTTP/1.0 200 OK\r\n"+
+                                    "Content-type: "+mimeType+"\r\n\r\n");
+                            out.print(answer);
+                        }else{
+                            //mimeType="image/jpeg";
+                            InputStream inStream=new FileInputStream((File)answer);
+                            mimeType= new MimetypesFileTypeMap().getContentType((File)answer);
+                            out.print("HTTP/1.0 200 OK\r\n"+
+                                    "Content-type: "+mimeType+"\r\n\r\n");
+                            byte[]fileData = new byte[5000];
+                            int n;
+                            while ((n = inStream.read(fileData))>0) out.write(fileData, 0, n);
+                        }
                     }
                 }
+
                 out.close(); in .close();
 
             }catch (Exception e){
@@ -125,9 +143,6 @@ public class Service {
                 mimeType="text/html";
                     out.print("HTTP/1.0 404 Not Found\r\n"+
                             "Content-type: "+mimeType+"\r\n\r\n");
-                    out.print("<html> " +
-                    "<head>404</head>" +
-                    "</html>");
                 e.printStackTrace();
             }
 

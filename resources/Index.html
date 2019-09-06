@@ -1,0 +1,23 @@
+<html>
+<head>
+    <title>Calculadora de cuadrados</title>
+</head>
+<body>
+
+<form>
+    Numero: <input type="text" name="num"><br>
+    Cuadrado: <input type="text" name="mult"><br>
+    <input type="button" value="cuadrado" onclick="calcMult()">
+</form>
+
+<script>
+    function calcMult() {
+        let num1 = document.getElementsByName("num")[0].value;
+        let mult = Number(num1) * Number(num1);
+        document.getElementsByName("mult")[0].value = mult;
+    }
+</script>
+
+
+</body>
+</html>
