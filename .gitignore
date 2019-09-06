@@ -1,15 +1,75 @@
 
-# Created by https://www.gitignore.io/api/java,nette,maven,bluej,netbeans,intellij,visualstudiocode
-# Edit at https://www.gitignore.io/?templates=java,nette,maven,bluej,netbeans,intellij,visualstudiocode
+# Created by https://www.gitignore.io/api/java,maven,gradle,eclipse,netbeans,intellij,visualstudiocode
+# Edit at https://www.gitignore.io/?templates=java,maven,gradle,eclipse,netbeans,intellij,visualstudiocode
 
-### bluej ###
-# BlueJ: A Java IDE for programming beginners. http://bluej.org
+### Eclipse ###
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
 
-# Editor preferences for a class etc, see http://lists.bluej.org/pipermail/bluej-discuss/2003-May/002351.html
-*.ctxt
+# External tool builders
+.externalToolBuilders/
 
-# Duplicate of project file, see http://www.hs-owl.de/fb5/labor/it/de/if1/vl/IF1JavaOhneBluej.pdf, page 4
-bluej.pkh
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# PyDev specific (Python IDE for Eclipse)
+*.pydevproject
+
+# CDT-specific (C/C++ Development Tooling)
+.cproject
+
+# CDT- autotools
+.autotools
+
+# Java annotation processor (APT)
+.factorypath
+
+# PDT-specific (PHP Development Tools)
+.buildpath
+
+# sbteclipse plugin
+.target
+
+# Tern plugin
+.tern-project
+
+# TeXlipse plugin
+.texlipse
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Code Recommenders
+.recommenders/
+
+# Annotation Processing
+.apt_generated/
+
+# Scala IDE specific (Scala & Java development for Eclipse)
+.cache-main
+.scala_dependencies
+.worksheet
+
+### Eclipse Patch ###
+# Eclipse Core
+.project
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+# Annotation Processing
+.apt_generated
+
+.sts4-cache/
 
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
@@ -100,6 +160,7 @@ fabric.properties
 *.log
 
 # BlueJ files
+*.ctxt
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -138,14 +199,6 @@ dist/
 nbdist/
 .nb-gradle/
 
-### Nette ###
-# Nette - http://nette.org
-# Ignore /log and /temp directories content but commit .htaccess settings
-/log/*
-!/log/.htaccess
-/temp/*
-!/temp/.htaccess
-
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
@@ -157,5 +210,22 @@ nbdist/
 # Ignore all local history of files
 .history
 
-# End of https://www.gitignore.io/api/java,nette,maven,bluej,netbeans,intellij,visualstudiocode
+### Gradle ###
+.gradle
 
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+
+### Gradle Patch ###
+**/build/
+
+# End of https://www.gitignore.io/api/java,maven,gradle,eclipse,netbeans,intellij,visualstudiocode
