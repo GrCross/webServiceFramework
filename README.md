@@ -114,7 +114,6 @@ https://web-service-framework.herokuapp.com/apps/video
 ````
 
 ## Construido con
-https://web-service-framework.herokuapp.com/apps/video
 * [Maven](https://maven.apache.org/) - Manejador de dependencias
 
 
