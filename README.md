@@ -77,25 +77,21 @@ Pagina de inicio
 ````
 localhost:5000/apps/cuadrado
 ````
-![](resources\imagenes\cuadrado.PNG)
 
 Imagen jpeg
 ````
 localhost:5000/apps/elesis
 ````
-![](resources\imagenes\Elesis.PNG)
 
 imagen jpg
 ````
 localhost:5000/apps/landscape
 ````
-![](resources\imagenes\Cat.PNG)
 
 archivo mp3
 ````
 localhost:5000/apps/music
 ````
-![](resources\imagenes\Music.PNG)
 
 pagina HTML
 
@@ -103,17 +99,11 @@ pagina HTML
 localhost:5000/apps/itsDown
 ````
 
-![](resources\imagenes\itsDown.PNG)
 
 archivo mp4
 ````
 localhost:5000/apps/video
 ````
-![](resources\imagenes\video.PNG)
-
-
-
-
 
 ## Displiege
 
