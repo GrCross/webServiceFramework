@@ -9,9 +9,13 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.SocketHandler;
 import javax.activation.MimetypesFileTypeMap;
 import java.io.File;
+import java.util.concurrent.*;
 
 public class Service {
     private static int port = getPort();
@@ -20,10 +24,17 @@ public class Service {
     private static BufferedOutputStream dataOut = null;
     private static String fileRequest;
     Map<String,Handler> URLHandleList = new HashMap<>();
+    private static String path;
+    private static int poolSize;
+    private final ExecutorService pool;
 
+    public Service(String path,int poolSize) {
+        this.path = path;
+        this.poolSize = poolSize;
+        pool = Executors.newFixedThreadPool(poolSize);
+    }
 
-
-    public void initialize(String path) throws InvocationTargetException, IllegalAccessException, ClassNotFoundException {
+    public void initialize() throws InvocationTargetException, IllegalAccessException, ClassNotFoundException {
 
             Class<?> c = Class.forName(path);
 
@@ -39,16 +50,17 @@ public class Service {
                     System.out.println(m.invoke(null,null));
                 }
             }
-
     }
 
-    public void listen() throws IOException {
+    public void listen() throws IOException, IllegalAccessException, ClassNotFoundException, InvocationTargetException {
+
+        this.initialize();
 
         ServerSocket serverSocket = null;
 
         try {
             //try listen the port
-            serverSocket =new ServerSocket(port);
+            serverSocket = new ServerSocket(port);
 
         }catch (Exception e) {
             System.err.println("Could not listen on port: 35000.");
@@ -62,13 +74,14 @@ public class Service {
                 //Accept the connection
                 System.out.println("Ready for receive ...");
                 clientSocket = serverSocket.accept();
+                pool.execute(new RequestHandler(clientSocket,this.URLHandleList));
 
             } catch (IOException e) {
                 System.err.println("Accept failed.");
                 System.exit(1);
             }
 
-            PrintStream out=new PrintStream(new BufferedOutputStream(clientSocket.getOutputStream()));
+            /*PrintStream out=new PrintStream(new BufferedOutputStream(clientSocket.getOutputStream()));
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             dataOut = new BufferedOutputStream(clientSocket.getOutputStream());
             String inputLine, outPutLine;
@@ -143,7 +156,7 @@ public class Service {
                     out.print("HTTP/1.0 404 Not Found\r\n"+
                             "Content-type: "+mimeType+"\r\n\r\n");
                 e.printStackTrace();
-            }
+            }*/
 
         }
 
