@@ -40,6 +40,12 @@ public class WebServiceHello {
         return file;
     }
 
+    @Web("hola")
+    public static File hola(){
+        File file = new File("resources/hola.txt");
+        return file;
+    }
+
 
 
 }

@@ -14,6 +14,7 @@ public class RequestHandler implements Runnable{
     private static BufferedOutputStream dataOut = null;
     Map<String,Handler> URLHandleList = new HashMap<>();
 
+
     public RequestHandler(Socket socket,Map<String,Handler> URLHandleList) {
         this.socket = socket;
         this.URLHandleList = URLHandleList;
