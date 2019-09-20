@@ -18,7 +18,7 @@ public class Controller
     }
 
     public static void main(String[] args) throws ClassNotFoundException, InvocationTargetException, IllegalAccessException, IOException {
-        service = new Service("apps.WebServiceHello",10);
+        service = new Service("apps.WebServiceHello",10000);
 
         service.listen();
     }
