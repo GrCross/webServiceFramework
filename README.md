@@ -1,6 +1,6 @@
 # Web Service Framework
 
-La siguiente aplicacion recrear un servidor web sencillo en java. El servidor será capaz de entregar 	tanto paginas html como imágenes tipo PNG. Además del servidor proveerá un framework IoC construido mediante POJOs para la construcción de aplicaciones web.
+La siguiente aplicacion recrear un servidor concurrente web sencillo en java. El servidor será capaz de entregar tanto paginas html como imágenes tipo PNG. Además del servidor proveerá un framework IoC construido mediante POJOs para la construcción de aplicaciones web.
 
 ## Como empezar
 
